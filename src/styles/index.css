@@ -28,6 +28,9 @@ input {
     border-radius: 9px;
     background-color: rgba(15, 15, 9, 0.979);
     padding: 5px;
+    margin-top: 30px;
+    color: aliceblue;
+    height: 45px;
 }
 
 .cont {
@@ -36,5 +39,14 @@ input {
 }
 
 body {
-    background-color: black;
+    background:  linear-gradient(to left, rgb(1, 24, 1) 28px, red 50%, rgb(3, 15, 15));
+}
+
+.title {
+    color: aliceblue;
+   margin: 40px;
+font-weight: bold;
+text-decoration-line: underline;
+
+ 
 }
