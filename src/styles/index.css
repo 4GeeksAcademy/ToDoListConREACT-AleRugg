@@ -50,3 +50,9 @@ text-decoration-line: underline;
 
  
 }
+
+.footer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 24px;
+}
