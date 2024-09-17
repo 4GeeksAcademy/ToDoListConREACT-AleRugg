@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { BsFillEraserFill } from "react-icons/bs";
 
 
+
+/// pendientes: arreglar que se vean las viñetas quitando el flex pero acomodando que queden los iconos del lado derecho sin moverse...
+/// preguntas a irio y gaston: como uso position relative y absolute para los iconos 
+
+
 const ToDoList = () => {
 
     const [tasks, setTasks] = useState([])
@@ -22,7 +27,7 @@ const ToDoList = () => {
         if (e.key === "Enter" && inputValue.trim() !== "") {
 
             setTasks([...tasks, inputValue])
-            setInputValue(""); // Limpia el input
+            setInputValue(""); // Limpia el input despues de la interaccion
         }
 
 
@@ -31,7 +36,7 @@ const ToDoList = () => {
     useEffect(()=> {
         if(tasks.length == 10) {
             setError(true)
-            console.log("funciona") // con este hacemos una alerta  de lmite de 10 tareas
+            console.log("funciona") // alerta de maximas tareas diarias (10)
         }
 
         else setError(false)
@@ -40,13 +45,17 @@ const ToDoList = () => {
     let maxLength = 100;
 
     useEffect(() => {
-        if( inputValue.length == maxLength) {
+        if( inputValue.length == maxLength) { // alerta de maximos caracateres
             setError2(true)
         }
         else {setError2(false)}
         
-         // copn este hacemos una alerta de caracteres maximos dentro del input
+       
     })
+
+    const deleteTask = (index) => {
+        const newTasks = tasks.filter((_, i) => i !== index); // borrar articulos de la lista 
+        setTasks(newTasks)}; 
 
     return (
 
@@ -54,6 +63,7 @@ const ToDoList = () => {
 
             <div className="card bg-dark cont" >
                 <div className=" d-flex justify-content-center align-items-center mt-2">
+                    <div className="maxAlerts">
                     <input
                         type="text"
                         placeholder="Añade tu tarea y pulsa Enter para añadirla a la lista..."
@@ -64,8 +74,12 @@ const ToDoList = () => {
                         maxLength={100}
                           
                     />
-                    { error && <span className="bg-danger">"Hola funciono como alerta para los 10 li"</span>}
-                    { error2 && <span className="bg-danger">"Hola funciono como alerta para los caracteres"</span>}
+                    
+                    
+                    { error && <span className=" mxLength">Solo puedes añadir 10 tareas a tu lista!</span>}
+                    { error2 && <span className=" maxArticles">Tus tareas pueden tener como maximos 100 caracteres, lo siento!</span>}
+                    </div>
+
 
                 </div>
                 <h4 className="title">Lista de tareas por hacer:</h4>
@@ -82,7 +96,7 @@ const ToDoList = () => {
                                     
                                 >
                                     {li}                                    
-                                        <BsFillEraserFill className="eraserIcon" />                                    
+                                        <BsFillEraserFill className="eraserIcon" onClick={() => deleteTask(index)} />                                    
                                 </li>
 
                             )

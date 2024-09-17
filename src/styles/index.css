@@ -1,26 +1,30 @@
 .liGenerado {
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 10px; 
-    border-bottom: 1px solid #ccc; 
-   
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    list-style: circle;
+    list-style-position: inside;
+    
+    
+
 }
 
 .eraserIcon {
-    margin-left: 10px; 
-    cursor: pointer; 
+    margin-left: 10px;
+    cursor: pointer;
     color: rgb(235, 13, 13);
 }
 
 .liGenerado:hover .eraserIcon {
-    color: rgb(226, 201, 57); 
+    color: rgb(226, 201, 57);
 }
 
 
 .toDoWrapper {
     margin-top: 50px;
-  
+
 }
 
 input {
@@ -39,20 +43,35 @@ input {
 }
 
 body {
-    background:  linear-gradient(to left, rgb(1, 24, 1) 28px, red 50%, rgb(3, 15, 15));
+    background: linear-gradient(to left, rgb(1, 24, 1) 28px, red 50%, rgb(3, 15, 15));
 }
 
 .title {
     color: aliceblue;
-   margin: 40px;
-font-weight: bold;
-text-decoration-line: underline;
+    margin: 40px;
+    font-weight: bold;
+    text-decoration-line: underline;
 
- 
+
 }
 
 .footer {
-    margin-top: 20px;
+    margin-top: 50px;
     margin-bottom: 20px;
     margin-left: 24px;
+}
+
+.mxLength,
+.maxArticles {
+
+    color: red;
+    margin-top: 10px;
+
+}
+
+.maxAlerts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
