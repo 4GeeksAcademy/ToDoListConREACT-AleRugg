@@ -36,11 +36,11 @@ const ToDoList = () => {
     useEffect(()=> {
         if(tasks.length == 10) {
             setError(true)
-            console.log("funciona") // alerta de maximas tareas diarias (10)
+           // alerta de maximas tareas diarias (10)
         }
 
         else setError(false)
-    })
+    },[tasks])
 
     let maxLength = 100;
 
@@ -51,7 +51,7 @@ const ToDoList = () => {
         else {setError2(false)}
         
        
-    })
+    }, [inputValue])
 
     const deleteTask = (index) => {
         const newTasks = tasks.filter((_, i) => i !== index); // borrar articulos de la lista 
