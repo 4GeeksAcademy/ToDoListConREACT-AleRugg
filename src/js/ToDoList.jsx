@@ -13,8 +13,7 @@ const ToDoList = () => {
     const [inputValue, setInputValue] = useState("")
     const [error, setError] = useState(false)
     const [error2, setError2] = useState(false)
-
-   
+    const [checked, setChecked] = useState(false)
 
 
     const inputHandler = (e) => {
@@ -33,29 +32,41 @@ const ToDoList = () => {
 
     }
 
-    useEffect(()=> {
-        if(tasks.length == 10) {
+    useEffect(() => {
+        if (tasks.length == 10) {
             setError(true)
-           // alerta de maximas tareas diarias (10)
+            // alerta de maximas tareas diarias (10)
         }
 
         else setError(false)
-    },[tasks])
+    }, [tasks])
 
     let maxLength = 100;
 
     useEffect(() => {
-        if( inputValue.length == maxLength) { // alerta de maximos caracateres
+        if (inputValue.length == maxLength) { // alerta de maximos caracateres
             setError2(true)
         }
-        else {setError2(false)}
-        
-       
+        else { setError2(false) }
+
+
     }, [inputValue])
 
     const deleteTask = (index) => {
         const newTasks = tasks.filter((_, i) => i !== index); // borrar articulos de la lista 
-        setTasks(newTasks)}; 
+        setTasks(newTasks)
+    };
+
+
+
+
+    
+
+    
+    
+    useEffect(() => {
+        console.log(checked)
+    })
 
     return (
 
@@ -64,41 +75,36 @@ const ToDoList = () => {
             <div className="card bg-dark cont" >
                 <div className=" d-flex justify-content-center align-items-center mt-2">
                     <div className="maxAlerts">
-                    <input
-                        type="text"
-                        placeholder="Añade tu tarea y pulsa Enter para añadirla a la lista..."
-                        value={inputValue}
-                        onChange={inputHandler}
-                        onKeyDown={handlerKeyDown}
-                        disabled={tasks.length >= 10}
-                        maxLength={100}
-                          
-                    />
-                    
-                    
-                    { error && <span className=" mxLength">Solo puedes añadir 10 tareas a tu lista!</span>}
-                    { error2 && <span className=" maxArticles">Tus tareas pueden tener como maximos 100 caracteres, lo siento!</span>}
+                        <input
+                            type="text"
+                            placeholder="Añade tu tarea y pulsa Enter para añadirla a la lista..."
+                            value={inputValue}
+                            onChange={inputHandler}
+                            onKeyDown={handlerKeyDown}
+                            disabled={tasks.length >= 10}
+                            maxLength={100}
+
+                        />
+                        {error && <span className=" mxLength">Solo puedes añadir 10 tareas a tu lista!</span>}
+                        {error2 && <span className=" maxArticles">Tus tareas pueden tener como maximos 100 caracteres, lo siento!</span>}
                     </div>
-
-
                 </div>
                 <h4 className="title">Lista de tareas por hacer:</h4>
-
                 <div className="card-body">
                     <ul>
                         {tasks.map((li, index) => {
-
                             return (
-
                                 <li className="text-white liGenerado"
                                     value={li.value}
                                     key={index}
-                                    
-                                >
-                                    {li}                                    
-                                        <BsFillEraserFill className="eraserIcon" onClick={() => deleteTask(index)} />                                    
-                                </li>
 
+                                >
+                                    {li}
+                                    <div className="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <button type="button" id="checkButton" className="btn btn-warning"  onClick={(e) => setChecked(!checked) && console.log(e)}>Realizado</button>
+                                        <button type="button" className="btn btn-danger delete" onClick={() => deleteTask(index)} >Borrar</button>
+                                    </div>
+                                </li>
                             )
                         })}
                     </ul>
